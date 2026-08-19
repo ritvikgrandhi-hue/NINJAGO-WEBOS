@@ -1,0 +1,47 @@
+@font-face {
+    font-family: 'NinjagoCustom';
+    src: url('Fonts/Kaindra-vmEZ7.woff2') format('woff2'),
+         url('Fonts/Kaindra-vmEZ7.woff2') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Keeps text visible while loading */
+}
+@font-face {
+    font-family: 'NinjagoCustom1';
+    src: url('Fonts/ShinobiRegular-K7nPD.woff2') format('woff2'),
+         url('Fonts/ShinobiRegular-K7nPD.woff2') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Keeps text visible while loading */
+}
+h1, .ninja-heading {
+    font-family: 'NinjagoCustom', Impact, sans-serif;
+    text-transform: uppercase; /* Most Ninjago fonts only contain uppercase letters */
+    letter-spacing: 2px;
+}
+
+.shinobi-heading {
+    font-family: 'NinjagoCustom1', Impact, sans-serif;
+    text-transform: uppercase; /* Most Ninjago fonts only contain uppercase letters */
+}
+.custom-button {
+  /* Layout & Sizing */
+  display: inline-block;
+  padding: 12px 24px;
+  
+  /* Text Styling */
+  color: #ffffff;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: center;
+  
+  /* Aesthetics */
+  background-color: #b8a225;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+  
+  /* Smooth Animation */
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}

@@ -1,8 +1,39 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <link rel="stylesheet" href="styles.css">
+</head>
+  <body style="background-image: url(./greengold.jpg); background-size: cover; margin: 0%;">
+     <div style="position: absolute; width: 100%; display: flex; backdrop-filter: blur(10px); background-color: rgba(255, 251, 0, 0.692); color: #070703; justify-content: space-between; justify-content: center; align-items: center;">
+        <p class="shinobi-heading" style="margin-left: 16px;">
+            NINJADECK OS
+        </p> 
+        <img style= "height: 100px;" src="image.png"/>
+        <p id="timeElement">
+            Time
+        </p>
+    </div>
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: solid; border-radius: 20px; width: 512px; padding: 16px; background-color: rgb(76, 228, 152);">
+      <h1 class="ninja-heading">NINJADECK OS V1</h1>
+      <h2> What's this OS for?</h2>
+      <p>This OS' main purpose is to serve as an "operating system" for a cyberdeck based on Ninjago. This OS will eventually be part of a bigger project. However, the applications
+        used on this OS can also be used on regular devices.
+      </p>
+      <img style="width: 256px; height: 156px; border-radius: 16px; object-fit: cover;" src="lloydbg.jpg"/>
+      <br>
 
-  <body>
-    <p>Hello</p>
+      <a class="custom-button" href="https://github.com/ritvikgrandhi-hue/NINJAGO-WEBOS"> GITHUB PAGE:</a>
+    </div>
+    <script>
+
+      function updateTime() {
+          var currentTime = new Date().toLocaleString();
+          var timeText = document.querySelector("#timeElement");
+          timeText.innerHTML = currentTime;
+      }
+      setInterval(updateTime, 1000);
+
+    </script>
   </body>
 
 </html>
