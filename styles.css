@@ -45,3 +45,79 @@ h1, .ninja-heading {
   /* Smooth Animation */
   transition: background-color 0.2s ease, transform 0.1s ease;
 }
+
+.windowheader{
+    display: block; /* Ensures block layout behavior */
+  background-color: rgba(255, 251, 0, 0.692);
+  /* Universally pulls the bar to the exact edges of the container */
+  margin-top: calc(var(--container-padding) * -1);
+  margin-left: calc(var(--container-padding) * -1);
+  margin-right: calc(var(--container-padding) * -1);
+  
+  /* Adds breathing room for the text "HI" inside the bar */
+  padding: 8px var(--container-padding); 
+  height:fit-content;
+  align-self: stretch;
+}
+
+.window{
+    display: flex;
+    flex-direction: column; /* Stacks the yellow bar on top of the text */
+    align-items: center;
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: 
+    translate(-50%, -50%); 
+    border: solid; 
+    border-radius: 20px; 
+    --container-padding: 16px; 
+    width: 512px; 
+    background-color: rgb(76, 228, 152);
+    padding: var(--container-padding);
+    box-sizing: border-box;
+    overflow: hidden;
+    justify-content: center;
+    display: none;
+}
+
+.ninja-close {
+  width: 32px;
+  height: 32px;
+  background-color: #1a1a1a;  /* Dark charcoal */
+  border: 2px solid #ff4500;    /* Kai's Red */
+  border-radius: 6px;           /* Clean, slightly soft corners */
+  color: #ffffff;               /* White X */
+  font-size: 20px;
+  font-family: sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  transition: background-color 0.15s ease;
+}
+
+/* Hover: Light up the element color */
+.ninja-close:hover {
+  background-color: #ff4500;
+}
+
+.topdesign {
+    position: absolute; 
+    width: 100%; 
+    display: flex; 
+    backdrop-filter: blur(10px); 
+    background-color: rgba(255, 251, 0, 0.692); 
+    color: #070703; 
+    justify-content: center; 
+    align-items: center;
+}
+
+.appicon {
+    width: 64px; 
+    height: 64px;
+    border-radius: 16px;
+    cursor: pointer;
+}
