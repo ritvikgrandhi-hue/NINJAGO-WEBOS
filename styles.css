@@ -48,7 +48,9 @@ h1, .ninja-heading {
 
 .windowheader{
     display: block; /* Ensures block layout behavior */
-  background-color: rgba(255, 251, 0, 0.692);
+    background: linear-gradient(90deg, #d7ff32, #8bc400);
+    position: relative;
+    overflow: hidden;
   /* Universally pulls the bar to the exact edges of the container */
   margin-top: calc(var(--container-padding) * -1);
   margin-left: calc(var(--container-padding) * -1);
@@ -80,6 +82,7 @@ h1, .ninja-heading {
     justify-content: center;
     display: none;
     background: linear-gradient(160deg, #1c5c33, #0d3b1f);
+    color: #f4e8c1;
 }
 
 .ninja-close {
@@ -121,6 +124,7 @@ h1, .ninja-heading {
     height: 64px;
     border-radius: 16px;
     cursor: pointer;
+    margin-right: 32px
 }
 
 /* NinjaNotes Content */
@@ -131,7 +135,6 @@ h1, .ninja-heading {
     padding: 28px;
     font-family: Arial, sans-serif;
     overflow-y: auto;
-    color: #f4e8c1;
 }
 
 /* Title */
@@ -162,82 +165,6 @@ h1, .ninja-heading {
     gap: 18px;
 }
 
-
-/* Ninja Note Card */
-.note-card {
-    position: relative;
-    background: linear-gradient(135deg, #d7ff32, #9dcc00);
-    border: 3px solid #111;
-    border-radius: 14px;
-    padding: 20px;
-    min-height: 120px;
-    box-sizing: border-box;
-    cursor: pointer;
-    overflow: hidden;
-
-    box-shadow:
-        5px 5px 0px #111;
-
-    transition:
-        transform 0.15s ease,
-        box-shadow 0.15s ease;
-}
-
-
-/* Ninja stripe */
-.note-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 25px;
-    width: 12px;
-    height: 100%;
-    background: #08752f;
-    transform: rotate(8deg);
-    opacity: 0.8;
-}
-
-
-/* Second stripe */
-.note-card::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 50px;
-    width: 5px;
-    height: 100%;
-    background: #08752f;
-    transform: rotate(8deg);
-    opacity: 0.5;
-}
-
-
-/* Keep text above the stripes */
-.note-card h3,
-.note-card p {
-    position: relative;
-    z-index: 1;
-}
-
-
-/* Note title */
-.note-card h3 {
-    margin: 0 0 8px 0;
-    font-size: 20px;
-    font-weight: 800;
-}
-
-
-/* Note date */
-.note-card p {
-    margin: 0;
-    font-size: 12px;
-    font-weight: bold;
-    opacity: 0.65;
-}
-
-
-/* Click */
 .note-card:active {
     transform: translate(3px, 3px);
 
@@ -247,11 +174,11 @@ h1, .ninja-heading {
 
 .note-view {
     gap: 10px;
-    border-width: 2px;
-    border-color: yellowgreen;
-    border-style: dotted;
+    background: linear-gradient(180deg, #f4e8c1, #e8d9a0);
+    border: 3px solid #6b4a2b;
     border-radius: 16px;
-    padding-left: 8px;
+    padding: 20px;
+    color: #2b1d0e;
 }
 #createContent {
     display: flex;
@@ -277,6 +204,7 @@ h1, .ninja-heading {
     font-size: 14px;
     line-height: 1.5;
     outline: none;
+    color: #0d3b1f;
 }
 
 hr {
@@ -290,4 +218,59 @@ hr {
     display: flex;
     flex-direction: row;
     gap: 10px;
+}
+
+.windowheader::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -20px;
+    width: 60px;
+    height: 100%;
+    background: #111;
+    transform: skewX(-20deg);
+}
+
+.note-card {
+    position: relative;
+    background: linear-gradient(180deg, #f4e8c1, #e8d9a0);
+    border: 2px solid #6b4a2b;
+    border-radius: 6px / 18px; /* flatter sides, curved top/bottom = scroll shape */
+    padding: 24px 20px;
+    min-height: 120px;
+    box-sizing: border-box;
+    cursor: pointer;
+    color: #2b1d0e;
+
+    box-shadow:
+        inset 0 0 0 3px #d4af37,
+        4px 4px 0px #111;
+
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Top rod */
+.note-card::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: -6px;
+    right: -6px;
+    height: 14px;
+    background: linear-gradient(90deg, #3d2b1a, #6b4a2b, #3d2b1a);
+    border-radius: 8px;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.3);
+}
+
+/* Bottom rod */
+.note-card::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: -6px;
+    right: -6px;
+    height: 14px;
+    background: linear-gradient(90deg, #3d2b1a, #6b4a2b, #3d2b1a);
+    border-radius: 8px;
+    box-shadow: 0 -2px 3px rgba(0,0,0,0.3);
 }
