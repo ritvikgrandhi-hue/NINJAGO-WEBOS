@@ -1,54 +1,49 @@
 //TIME
 function updateTime() {
-          var currentTime = new Date().toLocaleString();
-          var timeText = document.querySelector("#timeElement");
-          timeText.innerHTML = currentTime;
-      }
-      setInterval(updateTime, 1000);
+  var currentTime = new Date().toLocaleString();
+  var timeText = document.querySelector("#timeElement");
+  timeText.innerHTML = currentTime;
+}
+
+setInterval(updateTime, 1000);
+
 
 //Makes Windows Draggable
 dragElement(document.getElementById("welcome"));
+dragElement(document.querySelector("#NinjaNotes"));
 
 function dragElement(element) {
-  // Step 2: Set up variables to keep track of the element's position.
   var initialX = 0;
   var initialY = 0;
   var currentX = 0;
   var currentY = 0;
 
-  // Step 3: Check if there is a special header element associated with the draggable element.
   if (document.getElementById(element.id + "header")) {
-    // Step 4: If present, assign the `dragMouseDown` function to the header's `onmousedown` event.
-    // This allows you to drag the window around by its header.
     document.getElementById(element.id + "header").onmousedown = startDragging;
   } else {
-    // Step 5: If not present, assign the function directly to the draggable element's `onmousedown` event.
-    // This allows you to drag the window by holding down anywhere on the window.
     element.onmousedown = startDragging;
   }
 
-  // Step 6: Define the `startDragging` function to capture the initial mouse position and set up event listeners.
   function startDragging(e) {
     e = e || window.event;
     e.preventDefault();
-    // Step 7: Get the mouse cursor position at startup.
+
     initialX = e.clientX;
     initialY = e.clientY;
-    // Step 8: Set up event listeners for mouse movement (`elementDrag`) and mouse button release (`closeDragElement`).
+
     document.onmouseup = stopDragging;
     document.onmousemove = dragElement;
   }
 
-  // Step 9: Define the `elementDrag` function to calculate the new position of the element based on mouse movement.
   function dragElement(e) {
     e = e || window.event;
     e.preventDefault();
-    // Step 10: Calculate the new cursor position.
+
     currentX = initialX - e.clientX;
     currentY = initialY - e.clientY;
     initialX = e.clientX;
     initialY = e.clientY;
-    // Step 11: Update the element's new position by modifying its `top` and `left` CSS properties.
+
     var newTop = element.offsetTop - currentY;
 
     var topBar = document.querySelector("#top");
@@ -59,115 +54,103 @@ function dragElement(element) {
 
     element.style.top = newTop + "px";
     element.style.left = (element.offsetLeft - currentX) + "px";
-    //element.style.top = (element.offsetTop - currentY) + "px";
-    //element.style.left = (element.offsetLeft - currentX) + "px";
   }
 
-  // Step 12: Define the `stopDragging` function to stop tracking mouse movement by removing the event listeners.
   function stopDragging() {
     document.onmouseup = null;
     document.onmousemove = null;
   }
 }
 
-//Open/Close windows
-var welcomeScreen = document.querySelector("#welcome")
+
+//Open/Close Windows
+var welcomeScreen = document.querySelector("#welcome");
+var notesScreen = document.querySelector("#NinjaNotes");
+
 function closeWindow(element) {
-  element.style.display = "none"
+  element.style.display = "none";
 }
 
 function openWindow(element) {
-  element.style.display = "flex"
+  element.style.display = "flex";
 }
 
-var welcomeScreenClose = document.querySelector("#welcomeclose")
-var welcomeScreenOpen = document.querySelector("#welcomeopen")
 
-welcomeScreenClose.addEventListener("click", function() {
-  closeWindow(welcomeScreen);
-});
+//Universal Open/Close Window Function
+function setupWindow(windowId, openButtonId, closeButtonId) {
+  var windowElement = document.querySelector("#" + windowId);
+  var openButton = document.querySelector("#" + openButtonId);
+  var closeButton = document.querySelector("#" + closeButtonId);
 
-welcomeScreenOpen.addEventListener("click", function() {
-  openWindow(welcomeScreen);
-});
+  openButton.addEventListener("click", function() {
+    openWindow(windowElement);
+  });
 
-//state of selected icon
-var selectedIcon = undefined
+  closeButton.addEventListener("click", function() {
+    closeWindow(windowElement);
+  });
+}
+
+setupWindow("welcome", "welcomeopen", "welcomeclose");
+setupWindow("NinjaNotes", "notesopen", "notesclose");
+
+
+//State of Selected Icon
+var selectedIcon = undefined;
+var currentNoteIndex = null;
 
 function selectIcon(element) {
   element.classList.add("selected");
-  selectedIcon = element
-} 
+  selectedIcon = element;
+}
 
 function deselectIcon(element) {
   element.classList.remove("selected");
-  selectedIcon = undefined
-} 
+  selectedIcon = undefined;
+}
 
 function handleIconTap(element) {
   if (element.classList.contains("selected")) {
-    deselectIcon(element)
-    openWindow(window)
+    deselectIcon(element);
+    openWindow(window);
   } else {
-    selectIcon(element)
+    selectIcon(element);
   }
 }
 
-dragElement(document.querySelector("#NinjaNotes"))
 
-var notesScreen = document.querySelector("#NinjaNotes")
-var notesScreenClose = document.querySelector("#notesclose")
-var notesScreenOpen = document.querySelector("#notesopen")
-notesScreenClose.addEventListener("click", function() {
-  closeWindow(notesScreen);
-});
-
-notesScreenOpen.addEventListener("click", function() {
-  openWindow(notesScreen);
-});
-
-//tapping on window overlays it over the rest
-
+//Tapping on Window Overlays It Over the Rest
 var biggestIndex = 1;
+var topBar = document.querySelector("#top");
 
 function addWindowTapHandling(element) {
   element.addEventListener("mousedown", () =>
     handleWindowTap(element)
-  )
+  );
 }
 
 function handleWindowTap(element) {
-  biggestIndex++;  // Increment biggestIndex by 1
+  biggestIndex++;
   element.style.zIndex = biggestIndex;
+  topBar.style.zIndex = biggestIndex + 1;
+  deselectIcon(selectedIcon);
 }
 
 addWindowTapHandling(welcomeScreen);
 addWindowTapHandling(notesScreen);
 
-function openWindow(element) {
-  element.style.display = "flex";
-  biggestIndex++;  // Increment biggestIndex by 1
-  element.style.zIndex = biggestIndex;
-}
-
-var topBar = document.querySelector("#top")
 
 function openWindow(element) {
   element.style.display = "flex";
-  biggestIndex++;  // Increment biggestIndex by 1
+  biggestIndex++;
   element.style.zIndex = biggestIndex;
   topBar.style.zIndex = biggestIndex + 1;
 }
 
-function handleWindowTap(element) {
-  biggestIndex++;  // Increment biggestIndex by 1
-  element.style.zIndex = biggestIndex;
-  topBar.style.zIndex = biggestIndex + 1;
-  deselectIcon(selectedIcon)
-}
-//topbarclose/open
-var topBarClose = document.querySelector("#topclose")
-var topBarOpen = document.querySelector("#topopen")
+
+//Topbar Close/Open
+var topBarClose = document.querySelector("#topclose");
+var topBarOpen = document.querySelector("#topopen");
 
 topBarClose.addEventListener("click", function() {
   closeWindow(topBar);
@@ -175,4 +158,131 @@ topBarClose.addEventListener("click", function() {
 
 topBarOpen.addEventListener("click", function() {
   openWindow(topBar);
+});
+
+//notes
+//Notes Data
+var notes = [
+  {
+    title: "Welcome",
+    date: "08/24/2026",
+    content: `
+      <p>Welcome to <strong>NinjaNotes</strong>.</p>
+      <p>This is where your notes will live.</p>
+    `
+  }
+];
+
+if (localStorage.getItem("notes")) {
+  notes = JSON.parse(localStorage.getItem("notes"));
+}
+//Grab the containers once
+var noteGrid = document.querySelector("#noteGrid");
+var noteView = document.querySelector("#noteView");
+var noteContent = document.querySelector("#noteContent");
+var createView = document.querySelector("#createView");
+var NoteCreate = document.querySelector("#note-create");
+var createContent = document.querySelector("#createContent");
+var titleInput = document.querySelector("#title-input");
+var bodyInput = document.querySelector("#bodyinput");
+var savebutton = document.querySelector("#savebutton")
+var deletebutton = document.querySelector("#deletebutton");
+var editbutton = document.querySelector("#editbutton");
+
+//Build one card
+function addToGrid(index) {
+  var card = document.createElement("div");
+  card.className = "note-card";
+  card.innerHTML = `
+    <h3>${notes[index].title}</h3>
+    <p>${notes[index].date}</p>
+  `;
+
+  card.addEventListener("click", function() {
+    openNote(index);
+  });
+
+  noteGrid.appendChild(card);
+}
+
+//Show a note's content in place of the grid
+function openNote(index) {
+  noteContent.innerHTML = notes[index].content;
+  noteGrid.style.display = "none";
+  noteView.style.display = "block";
+  currentNoteIndex = index;
+}
+
+//Go back to the grid
+
+function setupBackButton(backButtonId, viewElement) {
+  var backButton = document.querySelector("#" + backButtonId);
+
+  backButton.addEventListener("click", function() {
+    viewElement.style.display = "none";
+    noteGrid.style.display = "grid";
+  });
+}
+
+setupBackButton("noteBack", noteView);
+setupBackButton("createBack", createView);
+
+//Render all notes on load
+function renderNotes() {
+  noteGrid.innerHTML = "";
+  notes.forEach(function(note, index) {
+    addToGrid(index);
+  });
+}
+
+renderNotes();
+
+NoteCreate.addEventListener("click", function() {
+  titleInput.value = "";
+  bodyInput.innerHTML = "";
+  noteGrid.style.display = "none";
+  createView.style.display = "block";
+  noteView.style.display = "none";
+  currentNoteIndex = null;
+});
+
+
+
+savebutton.addEventListener("click", function() {
+  var newTitle = titleInput.value;
+  var newBody = bodyInput.innerHTML;
+  var newDate = new Date().toLocaleDateString();
+
+  var newNote = {
+    title: newTitle,
+    date: newDate,
+    content: newBody
+  };
+  if (currentNoteIndex == null) {
+    notes.push(newNote);
+  } else {
+    notes[currentNoteIndex] = newNote;
+  }
+  localStorage.setItem("notes", JSON.stringify(notes));
+  renderNotes();
+
+  createView.style.display = "none";
+  noteGrid.style.display = "grid";
+  currentNoteIndex = null;
+});
+
+
+deletebutton.addEventListener("click", function() {
+  notes.splice(currentNoteIndex, 1);
+  localStorage.setItem("notes", JSON.stringify(notes));
+  renderNotes();
+  noteView.style.display = "none";
+  noteGrid.style.display = "grid";
+});
+
+editbutton.addEventListener("click", function() {
+  titleInput.value = notes[currentNoteIndex].title
+  bodyInput.innerHTML = notes[currentNoteIndex].content
+  noteView.style.display = "none";
+  createView.style.display = "block";
 });

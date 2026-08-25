@@ -48,16 +48,38 @@
 
     <div id="NinjaNotes" class="window">
 
-      <div id="notesheader" class="windowheader"> 
+      <div id="NinjaNotesheader" class="windowheader"> 
         <p style="cursor: pointer;" id="notesclose" class="ninja-close">X</p>
       </div>
 
-      <h1 class="ninja-heading">NinjaNotes</h1>
-      <h2> The one place to store your wisdom</h2>
-      <p>This OS' main purpose is to serve as an "operating system" for a cyberdeck based on Ninjago. This OS will eventually be part of a bigger project. However, the applications
-        used on this OS can also be used on regular devices.
-      </p>
+      <div class="ninja-content">
+        <div class="ninja-title">
+          <h1 class="ninja-heading">NinjaNotes</h1>
+          <h2> The one place to store your wisdom</h2>
+        </div>
 
+        <p id="note-create" class="ninja-close">+</p>
+        <hr>
+        <div class="note-grid" id="noteGrid"></div>
+
+        <div class="note-view" id="noteView" style="display: none;">
+          <div class="note-view-actions">
+            <p class="ninja-close" id="noteBack">←</p>
+            <p class="ninja-close" id="deletebutton">🗑️</p>
+            <p class="ninja-close" id="editbutton">✏️</p>
+          </div>
+          <div id="noteContent"></div>
+        </div>
+
+        <div class="create-view" id="createView" style="display: none;">
+          <p class="ninja-close" id="createBack">←</p>
+          <div id="createContent">
+            <input id="title-input">
+            <br>
+            <div contenteditable="true" id="bodyinput"></div>
+            <p id="savebutton" class="ninja-close">💾</p>
+          </div>
+        </div>
     </div>
     <script src="script.js"></script>
   </body>

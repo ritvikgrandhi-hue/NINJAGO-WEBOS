@@ -79,6 +79,7 @@ h1, .ninja-heading {
     overflow: hidden;
     justify-content: center;
     display: none;
+    background: linear-gradient(160deg, #1c5c33, #0d3b1f);
 }
 
 .ninja-close {
@@ -120,4 +121,173 @@ h1, .ninja-heading {
     height: 64px;
     border-radius: 16px;
     cursor: pointer;
+}
+
+/* NinjaNotes Content */
+.ninja-content {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 28px;
+    font-family: Arial, sans-serif;
+    overflow-y: auto;
+    color: #f4e8c1;
+}
+
+/* Title */
+.ninja-title {
+    margin-bottom: 26px;
+}
+
+.ninja-heading {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 700;
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
+.ninja-title h2 {
+    margin: 6px 0 0 0;
+    font-size: 15px;
+    font-weight: 400;
+    opacity: 0.7;
+}
+
+
+/* Note Grid */
+.note-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+
+/* Ninja Note Card */
+.note-card {
+    position: relative;
+    background: linear-gradient(135deg, #d7ff32, #9dcc00);
+    border: 3px solid #111;
+    border-radius: 14px;
+    padding: 20px;
+    min-height: 120px;
+    box-sizing: border-box;
+    cursor: pointer;
+    overflow: hidden;
+
+    box-shadow:
+        5px 5px 0px #111;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+
+/* Ninja stripe */
+.note-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 25px;
+    width: 12px;
+    height: 100%;
+    background: #08752f;
+    transform: rotate(8deg);
+    opacity: 0.8;
+}
+
+
+/* Second stripe */
+.note-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 50px;
+    width: 5px;
+    height: 100%;
+    background: #08752f;
+    transform: rotate(8deg);
+    opacity: 0.5;
+}
+
+
+/* Keep text above the stripes */
+.note-card h3,
+.note-card p {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* Note title */
+.note-card h3 {
+    margin: 0 0 8px 0;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+
+/* Note date */
+.note-card p {
+    margin: 0;
+    font-size: 12px;
+    font-weight: bold;
+    opacity: 0.65;
+}
+
+
+/* Click */
+.note-card:active {
+    transform: translate(3px, 3px);
+
+    box-shadow:
+        2px 2px 0px #111;
+}
+
+.note-view {
+    gap: 10px;
+    border-width: 2px;
+    border-color: yellowgreen;
+    border-style: dotted;
+    border-radius: 16px;
+    padding-left: 8px;
+}
+#createContent {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 400px;
+    margin-top: 10px;
+}
+#title-input {
+    padding: 10px 14px;
+    border: 2px solid #111;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    outline: none;
+}
+#bodyinput {
+    min-height: 120px;
+    padding: 12px 14px;
+    border: 2px solid #111;
+    border-radius: 8px;
+    background: #ffffff;
+    font-size: 14px;
+    line-height: 1.5;
+    outline: none;
+}
+
+hr {
+  border: none;
+  height: 2px;
+  background-color: #111;
+  margin: 16px 0;
+}
+
+.note-view-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
 }
