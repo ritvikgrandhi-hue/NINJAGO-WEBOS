@@ -9,10 +9,10 @@ https://ritvikgrandhi-hue.github.io/NINJAGO-WEBOS/
 
 ## Quick Start:
 
-First Icon: Opens a notes app
-Second Icon: Opens Spotify in a new browser
-Third Icon: Opens a Calculator app
-Secret Window(click the lego face at the top of the topbar): Opens a welcome window
+- First Icon: Opens a notes app
+- Second Icon: Opens Spotify in a new browser
+- Third Icon: Opens a Calculator app
+- Secret Window(click the lego face at the top of the topbar): Opens a welcome window
 
 ## How it works:
 
