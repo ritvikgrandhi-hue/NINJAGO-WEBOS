@@ -25,6 +25,7 @@
 
       <div id="welcomeheader" class="windowheader"> 
         <p style="cursor: pointer;" id="welcomeclose" class="ninja-close">X</p>
+        <p style="cursor: pointer;" id="welcomefullscreen" class="ninja-close">⛶</p>
       </div>
 
       <h1 class="ninja-heading">NINJADECK OS V1</h1>
@@ -42,7 +43,10 @@
     <div id="desktopApps" style="padding-top: 128px; padding-left: 16px;">
       <div>
         <img src="ninjanotesicon.png" alt="NinjaNotes" id="notesopen" class="appicon selected">
-        <img src="ninjanotesicon.png" alt="NinjaNotes" id="notesopen" class="appicon selected">
+        <a href="https://open.spotify.com" target="_blank">
+          <img src="spotify1.png" alt="Spotify" class="appicon">
+        </a>
+        <img src="calcapp.png" alt="Calculator" id="calcopen" class="appicon selected">
       </div>
     </div>
 
@@ -50,6 +54,7 @@
 
       <div id="NinjaNotesheader" class="windowheader"> 
         <p style="cursor: pointer;" id="notesclose" class="ninja-close">X</p>
+        <p style="cursor: pointer;" id="notesfullscreen" class="ninja-close">⛶</p>
       </div>
 
       <div class="ninja-content">
@@ -80,7 +85,52 @@
             <p id="savebutton" class="ninja-close">💾</p>
           </div>
         </div>
+      </div>
     </div>
+<!--Calc-->
+    <div class="window" id="calculator">
+    
+    <div id="calculatorheader" class="windowheader">
+        <p style="cursor: pointer;" id="calcclose" class="ninja-close">X</p>
+        <p style="cursor: pointer;" id="calcfullscreen" class="ninja-close">⛶</p>
+    </div>
+
+    <div class="calculator-content">
+        <div class="calculator-content">
+
+          <div class="calculator-display" id="calc-display">0</div>
+
+          <div class="calculator-buttons">
+              <button onclick="clearCalculator()">AC</button>
+              <button onclick="deleteLast()">⌫</button>
+              <button onclick="appendOperator('%')">%</button>
+              <button class="operator" onclick="appendOperator('/')">÷</button>
+
+              <button onclick="appendNumber('7')">7</button>
+              <button onclick="appendNumber('8')">8</button>
+              <button onclick="appendNumber('9')">9</button>
+              <button class="operator" onclick="appendOperator('*')">×</button>
+
+              <button onclick="appendNumber('4')">4</button>
+              <button onclick="appendNumber('5')">5</button>
+              <button onclick="appendNumber('6')">6</button>
+              <button class="operator" onclick="appendOperator('-')">−</button>
+
+              <button onclick="appendNumber('1')">1</button>
+              <button onclick="appendNumber('2')">2</button>
+              <button onclick="appendNumber('3')">3</button>
+              <button class="operator" onclick="appendOperator('+')">+</button>
+
+              <button class="zero" onclick="appendNumber('0')">0</button>
+              <button onclick="appendDecimal()">.</button>
+              <button class="equals" onclick="calculate()">=</button>
+
+          </div>
+
+      </div>
+    </div>
+
+</div>
     <script src="script.js"></script>
   </body>
 

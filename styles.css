@@ -47,7 +47,9 @@ h1, .ninja-heading {
 }
 
 .windowheader{
-    display: block; /* Ensures block layout behavior */
+    display: flex; /* Ensures block layout behavior */
+    justify-content: space-between;
+    align-items: center;
     background: linear-gradient(90deg, #d7ff32, #8bc400);
     position: relative;
     overflow: hidden;
@@ -60,6 +62,11 @@ h1, .ninja-heading {
   padding: 8px var(--container-padding); 
   height:fit-content;
   align-self: stretch;
+}
+
+.windowheader > * {
+    position: relative;
+    z-index: 1;
 }
 
 .window{
@@ -273,4 +280,93 @@ hr {
     background: linear-gradient(90deg, #3d2b1a, #6b4a2b, #3d2b1a);
     border-radius: 8px;
     box-shadow: 0 -2px 3px rgba(0,0,0,0.3);
+}
+
+.appicon-link img {
+    display: block;
+}
+
+.fullscreen {
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    transform: none !important;
+    padding: 0 !important;
+    justify-content: flex-start !important;
+}
+
+.fullscreen .windowheader {
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/*calculator*/
+
+#calculator {
+    width: 300px;
+    min-height: 400px;
+}
+
+.calculator-content {
+    padding: 15px;
+}
+
+.calculator-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.calculator-buttons button {
+    height: 55px;
+
+    border: none;
+    border-radius: 12px;
+
+    background:goldenrod;
+    color: green;
+    
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition: 0.15s ease;
+}
+
+.calculator-buttons .equals {
+    grid-column: span 2;
+}
+
+.calculator-display {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    padding: 10px 15px;
+    margin-bottom: 15px;
+
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+
+    font-size: 32px;
+    font-weight: 500;
+
+    overflow: hidden;
+}
+
+.calculator-buttons button:hover {
+    transform: translateY(-2px);
+    background: rgb(200, 99, 40);
+}
+
+.calculator-buttons button:active {
+    transform: scale(0.95);
 }

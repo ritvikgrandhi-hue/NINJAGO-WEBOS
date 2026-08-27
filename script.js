@@ -11,6 +11,7 @@ setInterval(updateTime, 1000);
 //Makes Windows Draggable
 dragElement(document.getElementById("welcome"));
 dragElement(document.querySelector("#NinjaNotes"));
+dragElement(document.querySelector("#calculator"));
 
 function dragElement(element) {
   var initialX = 0;
@@ -66,6 +67,7 @@ function dragElement(element) {
 //Open/Close Windows
 var welcomeScreen = document.querySelector("#welcome");
 var notesScreen = document.querySelector("#NinjaNotes");
+var calcScreen = document.querySelector("#calculator");
 
 function closeWindow(element) {
   element.style.display = "none";
@@ -93,6 +95,7 @@ function setupWindow(windowId, openButtonId, closeButtonId) {
 
 setupWindow("welcome", "welcomeopen", "welcomeclose");
 setupWindow("NinjaNotes", "notesopen", "notesclose");
+setupWindow("calculator", "calcopen", "calcclose");
 
 
 //State of Selected Icon
@@ -105,8 +108,12 @@ function selectIcon(element) {
 }
 
 function deselectIcon(element) {
-  element.classList.remove("selected");
+  if (element) {
+    element.classList.remove("selected");
+  }
   selectedIcon = undefined;
+  //element.classList.remove("selected");
+  //selectedIcon = undefined;
 }
 
 function handleIconTap(element) {
@@ -286,3 +293,80 @@ editbutton.addEventListener("click", function() {
   noteView.style.display = "none";
   createView.style.display = "block";
 });
+
+function toggleFullscreen(element) {
+  if (element.classList.contains("fullscreen")) {
+    element.classList.remove("fullscreen");
+  } else {
+    element.classList.add("fullscreen");
+  }
+}
+
+function setupFullscreen(buttonId, windowElement) {
+  var button = document.querySelector("#" + buttonId);
+  button.addEventListener("click", function() {
+    toggleFullscreen(windowElement);
+  });
+}
+
+setupFullscreen("welcomefullscreen", welcomeScreen);
+setupFullscreen("notesfullscreen", notesScreen);
+setupFullscreen("calcfullscreen", calcScreen);
+
+//fullscreenbutton makes topbar invisible
+var topBarWasVisible = true;
+
+function toggleFullscreen(element) {
+  if (element.classList.contains("fullscreen")) {
+    // Leaving fullscreen
+    element.classList.remove("fullscreen");
+    if (topBarWasVisible) {
+      openWindow(topBar);
+    }
+  } else {
+    // Entering fullscreen
+    topBarWasVisible = (topBar.style.display !== "none");
+    closeWindow(topBar);
+    element.classList.add("fullscreen");
+  }
+}
+
+//Calculator
+
+let calculatorValue = "";
+
+function appendNumber(number) {
+    calculatorValue += number;
+    document.getElementById("calc-display").textContent = calculatorValue;
+}
+
+function appendOperator(operator) {
+    calculatorValue += operator;
+    document.getElementById("calc-display").textContent = calculatorValue;
+}
+
+function appendDecimal() {
+    calculatorValue += ".";
+    document.getElementById("calc-display").textContent = calculatorValue;
+}
+
+function clearCalculator() {
+    calculatorValue = "";
+    document.getElementById("calc-display").textContent = "0";
+}
+
+function deleteLast() {
+    calculatorValue = calculatorValue.slice(0, -1);
+    document.getElementById("calc-display").textContent =
+        calculatorValue || "0";
+}
+
+function calculate() {
+    try {
+        calculatorValue = String(eval(calculatorValue));
+        document.getElementById("calc-display").textContent = calculatorValue;
+    } catch {
+        calculatorValue = "";
+        document.getElementById("calc-display").textContent = "Error";
+    }
+}
