@@ -263,20 +263,6 @@ hr {
     border-radius: 8px;
     box-shadow: 0 2px 3px rgba(0,0,0,0.3);
 }
-
-/* Bottom rod */
-.note-card::after {
-    content: "";
-    position: absolute;
-    bottom: -8px;
-    left: -6px;
-    right: -6px;
-    height: 14px;
-    background: linear-gradient(90deg, #3d2b1a, #6b4a2b, #3d2b1a);
-    border-radius: 8px;
-    box-shadow: 0 -2px 3px rgba(0,0,0,0.3);
-}
-
 .appicon-link img {
     display: block;
 }
