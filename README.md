@@ -2,7 +2,8 @@
 A web-based OS for Ninjago lovers meant to contain apps that assist with everyday lives.
 
 ## Image:
-<img width="1852" height="867" alt="image" src="https://github.com/user-attachments/assets/c864cff8-63e5-438b-acf2-e469a994f0cb" />
+
+<img width="1840" height="856" alt="Screenshot 2026-08-27 201652" src="https://github.com/user-attachments/assets/36fac165-258c-49cc-8a9a-257faf6f66ed" />
 
 ## Link:
 https://ritvikgrandhi-hue.github.io/NINJAGO-WEBOS/
